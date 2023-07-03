@@ -3,7 +3,6 @@ import {genQRInfo} from "../../actions";
 import React, {useRef} from "react";
 import {isPicture} from "../../utils/imageUtils";
 import {decodeData} from "../../utils/qrcodeHandler";
-import { handleUpload, handleInputUrl } from "../../utils/gaHelper";
 
 const InputText = ({dispatch}) => {
     const textRef = useRef();
@@ -37,7 +36,6 @@ const InputText = ({dispatch}) => {
                             if (e.target.files.length > 0) {
                                 const file = e.target.files[0];
                                 if (isPicture(file)) {
-                                    handleUpload();
                                     decodeData(file).then((res) => {
                                         if (res) {
                                             textRef.current.value = res.data;
@@ -54,13 +52,11 @@ const InputText = ({dispatch}) => {
                         placeholder="https://qrbtf.com"
                         ref={textRef}
                         onBlur={(e) => {
-                            handleInputUrl();
                             dispatch(genQRInfo(e.target.value))
                         }}
                         onKeyPress={(e) => {
                             if (e.key === 'Enter') {
                                 dispatch(genQRInfo(e.target.value));
-                                handleInputUrl();
                                 e.target.blur();
                             }
                         }}

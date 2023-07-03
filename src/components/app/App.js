@@ -10,26 +10,7 @@ import PartStylesViewer from "../../containers/app/PartStylesViewer";
 import {getDownloadCount, login} from "../../api/TcbHandler";
 import {connect} from 'react-redux';
 import {loadDownloadData} from "../../actions";
-import ReactGA from 'react-ga';
 import {setScrollbarWidthProp} from "../../utils/util"
-
-ReactGA.initialize('UA-165845289-1');
-
-ReactGA.addTrackers(
-    [
-        {
-            trackingId: 'UA-165845289-1',
-            gaOptions: {
-                name: 'trackerUA',
-            }
-        },
-        {
-            trackingId: 'G-XKEWNQ1T0E',
-            gaOptions: { name: 'trackerG' }
-        }
-    ],
-    { alwaysSendToDefaultTracker: false }
-);
 
 function App({ dispatch }) {
     const updateDownloadData = useCallback((downloadData) => dispatch(loadDownloadData(downloadData)), []);
